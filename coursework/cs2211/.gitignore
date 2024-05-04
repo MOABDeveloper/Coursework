@@ -1,0 +1,12 @@
+admin/
+.vscode/
+.idea/
+*.dSYM/
+*.o
+*.out
+*.swp
+*~
+*.su
+*.bak
+core
+core.*
