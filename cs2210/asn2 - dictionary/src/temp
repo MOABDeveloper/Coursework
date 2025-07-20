@@ -1,0 +1,459 @@
+// import java.io.BufferedReader;
+// import java.io.File; 
+// import java.io.FileNotFoundException;
+// import java.io.FileReader;
+// import java.io.IOException;
+// import java.util.ArrayList;
+// import java.util.StringTokenizer;
+
+// public class Interface{
+
+
+//     private static boolean commands(BSTDictionary dictionary, String action, ArrayList<String> split)
+//     {
+        
+//         switch(action) {
+//             case "define": 
+//             {
+//                 // Check size of arguments to command
+//                 if (split.size() != 2) {
+//                     System.out.println("Invalid command.");
+//                     break;
+//                 }
+//                 String label = split.get(1);
+//                 Key searchKey = new Key(label, 1);
+//                 Record record = dictionary.get(searchKey);
+//                 // Check to see if word exists in dictionary
+//                 if(record == null)
+//                 {
+//                     System.out.println("the word " + label + " is not in the dictionary");
+
+//                 } else 
+//                 {
+//                     String data = record.getDataItem();
+//                     System.out.println(data);
+//                 }
+//                 break;
+//             }
+//             case "translate":
+//             {
+//                 if (split.size() != 2) {
+//                     System.out.println("Invalid input");
+//                     break;
+//                 }
+//                 String label = split.get(1);
+//                 Key searchKey = new Key(label, 2);
+//                 Record record = dictionary.get(searchKey);
+            
+//                 if(record == null)
+//                 {
+//                     System.out.println("There is no definition for the word " + label);
+//                 } else 
+//                 {
+//                     // Output the data item if this is found
+//                     String data = record.getDataItem();
+//                     System.out.println(data);
+//                 }
+//                 break;
+//             }
+//             case "sound":
+//             {
+//                 // Check if the arguments are the correct number
+//                 if (split.size() != 2) {
+//                     System.out.println("Invalid input");
+//                     break;
+//                 }
+//                 String label = split.get(1);
+//                 Key searchKey = new Key(label, 3);
+//                 Record record = dictionary.get(searchKey);
+                
+//                 if(record == null)
+//                 {
+//                     System.out.println("There is no sound file for " + label);
+//                 } else {
+//                     String filePath = record.getDataItem();
+//                     SoundPlayer player = new SoundPlayer();
+//                     // Play the sound file if it exists and handle any exceptions that may arise
+//                     try{
+//                         player.play(filePath);
+//                     } catch (MultimediaException e) {
+//                         System.out.println(e.getMessage());
+//                     }
+//                 }
+//                 break;
+//             }
+//             case "play":
+//             {
+//                 if (split.size() != 2) {
+//                     System.out.println("Invalid input");
+//                     break;
+//                 }
+//                 String label = split.get(1);
+//                 Key searchKey = new Key(label, 4);
+//                 Record record = dictionary.get(searchKey);
+
+//                 if(record == null)
+//                 {
+//                     System.out.println("There is no music file for " + label);
+//                 } 
+//                 else {
+//                     // Play the music file if it exists and handle any exceptions that may arise
+//                     String filePath = record.getDataItem();
+//                     SoundPlayer player = new SoundPlayer();
+//                     try{
+//                         player.play(filePath);
+//                     } catch (MultimediaException e) {
+//                         System.out.println(e.getMessage());
+//                     }
+//                 }
+//                 break;
+//             }
+//             case "say":
+//             {
+//                 if (split.size() != 2) {
+//                     System.out.println("Invalid input");
+//                     break;
+//                 }
+//                 String label = split.get(1);
+//                 Key searchKey = new Key(label, 5);
+//                 Record record = dictionary.get(searchKey);
+
+//                 if(record == null)
+//                 {
+//                     System.out.println("There is no voice file for " + label);
+//                 } 
+//                 else {
+//                     // Play the audio file if it exists and handle any exceptions that may arise
+//                     String filePath = record.getDataItem();
+//                     SoundPlayer player = new SoundPlayer();
+//                     try{
+//                         player.play(filePath);
+//                     } catch (MultimediaException e) {
+//                         System.out.println(e.getMessage());
+//                     }
+//                 }
+//                 break;
+//             }
+//            case "show":
+//             {
+//                 if (split.size() != 2) {
+//                     System.out.println("Invalid input");
+//                     break;
+//                 }
+//                 String label = split.get(1);
+//                 Key searchKey = new Key(label, 6);
+//                 Record record = dictionary.get(searchKey);
+
+//                 if(record == null)
+//                 {
+//                     System.out.println("There is no image file for " + label);
+//                 }
+//                 else
+//                 {
+//                     // Show the image file if it exists and handle any exceptions that may arise
+//                     String filePath = record.getDataItem();
+//                     PictureViewer viewer = new PictureViewer();
+//                     try{
+//                         viewer.show(filePath);
+//                     } catch (MultimediaException e) {
+//                         System.out.println(e.getMessage());
+//                     }
+//                 }
+//                 break;
+//             }
+//             case "animate":
+//             {
+//                 if (split.size() != 2) {
+//                     System.out.println("Invalid command.");
+//                     break;
+//                 }
+//                 String label = split.get(1);
+//                 Key searchKey = new Key(label, 7);
+//                 Record record = dictionary.get(searchKey);
+
+//                 if(record == null)
+//                 {
+//                     System.out.println("There is no animated image file for " + label);
+//                 }
+//                 else
+//                 {
+//                     // Show the gif file if it exists and handle any exceptions that may arise
+//                     String filePath = record.getDataItem();
+//                     PictureViewer viewer = new PictureViewer();
+//                     try{
+//                         viewer.show(filePath);
+//                     } catch (MultimediaException e) {
+//                         System.out.println(e.getMessage());
+//                     }
+//                 }
+//                 break;
+//             }
+//             case "browse":
+//             {
+//                 if (split.size() != 2) {
+//                     System.out.println("Invalid command.");
+//                     break;
+//                 }
+//                 String label = split.get(1);
+//                 Key searchKey = new Key(label, 8);
+//                 Record record = dictionary.get(searchKey);
+
+//                 if(record == null)
+//                 {
+//                     System.out.println("There is no webpage called " + label);
+//                 } 
+//                 else
+//                 {
+//                     // Show the html file if it exists and handle any exceptions that may arise
+//                     String filePath = record.getDataItem();
+//                     ShowHTML htmlViewer = new ShowHTML();
+//                     htmlViewer.show(filePath);
+//                 }
+//                 break;
+//             }
+//             case "delete":
+//             {   
+//                 if (split.size() != 3) {
+//                     System.out.println("Invalid command.");
+//                     break;
+//                 }
+//                 //Process arguments for deletion from dictionary
+//                 String label = split.get(1);
+//                 int type = Integer.parseInt(split.get(2));
+//                 try{
+//                     //Remove the element with the inputted key values
+//                     dictionary.remove(new Key(label, type));
+//                 } catch (DictionaryException e) {
+//                     //Test the messages
+//                     System.out.println(e.getMessage());
+//                 }
+//                 break;
+//             }
+//             case "add":
+//             {
+//                 // Ensure arguments to add are more than 4 elements
+//                 if (split.size() < 4) {
+//                     System.out.println("Invalid command.");
+//                     break;
+//                 }
+//                 String label = split.get(1);
+//                 int type = Integer.parseInt(split.get(2));
+//                 // Combines the data argument by spaces since it can be a long string
+//                 String data = String.join(" ", split.subList(3, split.size()));
+//                 Key newKey = new Key(label, type);
+//                 Record newRecord = new Record(newKey, data);
+//                 try{
+//                     dictionary.put(newRecord);
+//                 } catch (DictionaryException e) {
+//                     System.out.println(e.getMessage());
+//                 }
+                
+//                 break;
+//             }
+//             case "list":
+//             {
+//                 if (split.size() != 2) {
+//                     System.out.println("Invalid command.");
+//                     break;
+//                 }
+
+//                 String prefix = split.get(1);
+                
+//                 ArrayList<String> matching = new ArrayList<String>();
+//                 // Set type to 1 since all other nodes will have labels greater than this
+//                 Key prefixKey = new Key(prefix, 1);
+//                 // Print the prefix element if it already exists in the dictionary
+//                 if(dictionary.get(prefixKey) != null) {
+//                     matching.add(prefix);
+//                 }
+//                 // Print the successors of the element from the dictionary and see if they all have the same prefix since all nodes that start with the same prefix will be bigger than the prefix
+//                 Record successor = dictionary.successor(prefixKey);
+//                 while(successor!= null && successor.getKey().getLabel().startsWith(prefix)) {
+//                     matching.add(successor.getKey().getLabel());
+//                     successor = dictionary.successor(successor.getKey());
+//                 }
+//                 // If no elements found that start with this prefix
+//                 if (matching.size() == 0) 
+//                 {
+//                     System.out.println("No label attributes in the ordered dictionary start with prefix " + prefix);
+//                 }
+//                 // Output the elements starting with this prefix
+//                 for(int i = 0; i < matching.size(); i++)
+//                 {
+//                     String word = matching.get(i);
+                
+//                     if( i < matching.size() - 1)
+//                     {
+//                         System.out.print(word + ", ");
+//                     }
+//                     else
+//                     {
+//                         System.out.println(word);
+//                     }
+//                 }
+
+                
+//                 break;
+//             }
+//             case "first":
+//             {
+//                 if (split.size() != 1) {
+//                     System.out.println("Invalid command.");
+//                     break;
+//                 }
+
+//                 // Find the smallest element in the dictionary which will be the first element to be displayed
+//                 Record smallest = dictionary.smallest();
+//                 if(smallest != null)
+//                 {
+//                     String label = smallest.getKey().getLabel();
+//                     int type = smallest.getKey().getType();
+//                     String data = smallest.getDataItem();
+//                     System.out.println(label + ',' + type + ',' + data + '.');
+//                 }
+//                 break;
+//             }
+//             case "last":
+//             {
+//                 // Find the largest element in the dictionary which will be the first element to be displayed
+//                 if (split.size() != 1) {
+//                     System.out.println("Invalid command.");
+//                     break;
+//                 }
+//                 Record largest = dictionary.largest();
+//                 if(largest != null)
+//                 {
+//                     String label = largest.getKey().getLabel();
+//                     int type = largest.getKey().getType();
+//                     String data = largest.getDataItem();
+//                     System.out.println(label + ',' + type + ',' + data + '.');
+//                 }
+//                 break;
+//             }
+//             case "exit":
+//             {
+//                 // Exit if the user enters exit with no other arguments
+//                 if (split.size() != 1) {
+//                     System.out.println("Invalid command.");   
+//                 }
+//                 return true;
+//             }
+//             default:
+//                 System.out.println("Invalid command.");
+
+//         }
+//         return false;
+
+//     }
+
+//     public static void main(String[] args) throws IOException
+//     {
+//         BSTDictionary dictionary = new BSTDictionary();
+//         String filename = args[0];
+//         try {
+//             File myObj = new File(filename);
+//             BufferedReader myReader = new BufferedReader(new FileReader(myObj));
+//             String label;
+            
+//             while (myReader.ready()) {
+
+//                 label = myReader.readLine();  
+//                 if (label == null) {
+//                     break;
+//                 }
+
+
+//                 String nextLineData = myReader.readLine();
+//                 if (nextLineData == null) {  
+//                     break;
+// 	            }
+
+//                 int type = checkFistLetter(nextLineData);
+//                 // If its type is 2-5 then it ignore the starting with a special character
+//                 String data = nextLineData;
+//                 if(type == 2 || type == 3 || type == 4 || type == 5)
+//                 {
+//                     data = nextLineData.substring(1);
+//                 }
+//                 // Insert key and data converted to lowercase to the dictionary
+//                 Key newKey = new Key(label.toLowerCase(), type);
+//                 Record newRecord = new Record(newKey, data.toLowerCase());
+//                 try{
+//                     dictionary.put(newRecord);
+//                 } catch (DictionaryException e) {
+//                     System.out.println("Error: Cannot insert data into dictionary key "+ "(" +label.toLowerCase() + ", "+ type +")" +" already exists");
+//                 }
+//             }
+//             myReader.close();
+//         } catch (FileNotFoundException e) {
+//             System.out.println("An error occurred.");
+//             e.printStackTrace();
+//         }
+        
+//         while (true) {
+//             StringReader keyboard = new StringReader();
+//             String line = keyboard.read("Enter next command: ");
+//             ArrayList<String> split = split(line.trim());
+//             String action = split.get(0);
+//             boolean output = commands(dictionary, action, split);
+//             if (output) break;
+//         }
+//     }
+
+//     /*
+//      * This helper method 
+//      */
+//     private static ArrayList<String> split(String input) {
+//         ArrayList<String> store = new ArrayList<>();
+//         StringTokenizer tokenizer = new StringTokenizer(input, " ");
+        
+//         while (tokenizer.hasMoreTokens()) {
+//             store.add(tokenizer.nextToken());
+//         }
+
+//         return store;
+//     }
+
+//     /*
+//      * This helper method compares the char at index '0' to find out what case it is.
+//      */
+//     private static int checkFistLetter(String data)
+//     {
+//             if(data.charAt(0) == '/')
+//             {
+//                 // Translation of label to french
+//                 return 2;
+//             }
+//             else if(data.charAt(0) == '-')
+//             {
+//                 // Name of a sound file
+//                 return 3;
+//             }
+//             else if(data.charAt(0) == '+')
+//             {
+//                 // Name of a music file
+//                 return 4;
+//             }
+//             else if(data.charAt(0) == '*')
+//             {
+//                 // Name of a voice file
+//                 return 5;
+//             }
+
+//             else if (data.endsWith("jpg"))
+//             {
+//                 return 6;
+//             }
+//             else if (data.endsWith("gif"))
+//             {
+//                 return 7;
+//             }
+//             else if (data.endsWith("html"))
+//             {
+//                 return 8;
+//             } 
+            
+//             // Definition of the label
+//             return 1;
+//     }
+// }

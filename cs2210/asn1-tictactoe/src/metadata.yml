@@ -1,0 +1,12 @@
+---
+:id: 6685566
+:submitters:
+- :name: Mohammed Ali Abdul-nabi
+  :email: mabdulna@uwo.ca
+:created_at: !ruby/object:ActiveSupport::TimeWithZone
+  utc: 2024-10-28 03:42:55.166552000 Z
+  zone: !ruby/object:ActiveSupport::TimeZone
+    name: America/Los_Angeles
+  time: 2024-10-27 20:42:55.166552000 Z
+:status: processed
+:score: 19.0
